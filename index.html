@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"rel="stylesheet" />
+    <title>wordles</title>
+  </head>
+
+  <body>
+    <div class="titulo">Bienvenido a wordles en español</div>
+    <br>
+    <div id="wordle-container">
+    <div class="fila">
+        <div class="cuadro"><input type="text" maxlength="1" oninput="nextInput(this, 0)"></div>
+        <div class="cuadro"><input type="text" maxlength="1" oninput="nextInput(this, 1)"></div>
+        <div class="cuadro"><input type="text" maxlength="1" oninput="nextInput(this, 2)"></div>
+        <div class="cuadro"><input type="text" maxlength="1" oninput="nextInput(this, 3)"></div>
+        <div class="cuadro"><input type="text" maxlength="1" oninput="nextInput(this, 4)"></div>
+    </div>
+  </body>
+  <footer>
+    <input type="button" class="reiniciar" value="Reiniciar"> 
+  </footer>
+</html>

@@ -1,0 +1,61 @@
+.bebas-neue-regular {
+    font-family: "Bebas Neue", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Bebas Neue;
+    background-color: black;
+}
+
+.titulo {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+#wordle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fila {
+    display: flex;
+}
+
+.cuadro {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 24px;
+    margin: 5px;
+    border: 2px solid #000;
+    display: inline-block;
+}
+
+.cuadro input {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 24px;
+    border: none;
+    outline: none;
+}
+
+footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.reiniciar{
+  background-color: red;
+
+}
