@@ -1,28 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
     <title>wordles</title>
   </head>
-
   <body>
+    <header class="container">
+      <div class="row">
+        <div class="col text-center">
+          <label id="switch">
+            <input type="checkbox" id="theme-switch">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </header>
     <div class="titulo">Bienvenido a wordles en español</div>
     <br>
-    <div id="wordle-container">
-    <div class="fila">
-        <div class="cuadro"><input type="text" maxlength="1" oninput="nextInput(this, 0)"></div>
-        <div class="cuadro"><input type="text" maxlength="1" oninput="nextInput(this, 1)"></div>
-        <div class="cuadro"><input type="text" maxlength="1" oninput="nextInput(this, 2)"></div>
-        <div class="cuadro"><input type="text" maxlength="1" oninput="nextInput(this, 3)"></div>
-        <div class="cuadro"><input type="text" maxlength="1" oninput="nextInput(this, 4)"></div>
-    </div>
+    <div id="wordle-container"></div>
+    <footer>
+
+      <button class="reiniciar" value="Reiniciar" >Reiniciar </button>
+
+    </footer>
   </body>
-  <footer>
-    <input type="button" class="reiniciar" value="Reiniciar"> 
-  </footer>
 </html>
