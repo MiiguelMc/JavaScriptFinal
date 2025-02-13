@@ -169,10 +169,10 @@ input:checked + .slider:before {
 }
 
 .refresh {
-  color: black;
-  background-color: #8bb498;
+  color: var(--color-fondo);
+  background-color: var(--color-fuente);
 }
 .refresh:hover{
-  background-color: red;
-  color: white;
+  background-color:var(--color-fondo);
+  color: var(--color-fuente);
 }
