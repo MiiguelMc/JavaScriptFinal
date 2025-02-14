@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 .bebas-neue-regular {
-    font-family: "Bebas Neue", serif;
+    font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
     font-style: normal;
 }
-  
+
 body, html {
     height: 100%;
     margin: 0;
@@ -26,71 +28,29 @@ body, html {
   --color-fondo: #fff;
 }
 
-header {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-h1 {
-  font-size: 3rem;
-  text-transform: uppercase;
-  margin-top: 2rem;
-  font-family: 'Cinzel', serif;
-}
-
-h2 {
-  font-size: 1.8rem;
-  font-family: 'Cinzel', serif;
-}
-
-p {
-  margin-top: 1.4rem;
-  margin-bottom: 4rem;
-  font-family: 'Raleway', sans-serif;
-  font-size: 1.4rem;
-}
-
-a {
-  background-color: var(--color-fuente);
-  color: var(--color-fondo);
-  text-decoration: none;
-  text-transform: uppercase;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: .75rem;
-  padding-right: .75rem;
-  border-style: solid;
-  border-width: .2rem;
-  border-color: var(--color-fuente);
-  border-radius: 2rem;
-}
-
-a:hover {
-  background-color: var(--color-fondo);
-  color: var(--color-fuente);
-  text-decoration: none;
-}
-
 .titulo {
   font-size: 2rem;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 #wordle-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .cell {
   width: 50px;
   height: 50px;
-  border: 1px solid #000;
+  border: 2px solid #000;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
   text-transform: uppercase;
+  font-family: 'Bebas Neue', sans-serif;
 }
 
 .correct {
@@ -108,71 +68,17 @@ a:hover {
   color: white;
 }
 
-/*Botón de cambio de tema*/
-#switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-#switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--color-fuente);
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: var(--color-fondo);
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: var(--color-fuente);
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px var(--color-fuente);
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
 .refresh {
   color: var(--color-fondo);
   background-color: var(--color-fuente);
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-family: 'Bebas Neue', sans-serif;
 }
-.refresh:hover{
-  background-color:var(--color-fondo);
+
+.refresh:hover {
+  background-color: var(--color-fondo);
   color: var(--color-fuente);
 }

@@ -1,95 +1,107 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const themeSwitch = document.getElementById('theme-switch');
-  const currentTheme = localStorage.getItem('theme') || 'light';
-  document.documentElement.setAttribute('data-theme', currentTheme);
+document.addEventListener('DOMContentLoaded', async function() {
+    const themeSwitch = document.getElementById('theme-switch');
+    const wordleContainer = document.getElementById('wordle-container');
+    const refreshButton = document.querySelector('.refresh');
+    let palabraSecreta = "";
+    let intentos = 0;
+    const maxIntentos = 5;
+    let intentoActual = "";
 
-  if (currentTheme === 'dark') {
-    themeSwitch.checked = true;
-  }
-
-  themeSwitch.addEventListener('change', function() {
-    if (themeSwitch.checked) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
+    // Configuración del tema
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if (currentTheme === 'dark') {
+        themeSwitch.checked = true;
     }
-  });
 
-  // // Cargar palabras y seleccionar una aleatoria
-  // fetch('palabra.json')
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     const palabras = data.palabras;
-  //     iniciarJuego(palabras);
-  //   });
+    themeSwitch.addEventListener('change', function() {
+        if (themeSwitch.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    });
 
-  // function iniciarJuego(palabras) {
-  //   const palabraSecreta = palabras[Math.floor(Math.random() * palabras.length)];
-  //   let intentos = 0;
-  //   const maxIntentos = 5;
-  //   const wordleContainer = document.getElementById('wordle-container');
-  //   wordleContainer.innerHTML = '';
+    // Cargar palabras desde JSON
+    async function cargarPalabras() {
+        try {
+            const response = await fetch('palabra.json');
+            const data = await response.json();
+            palabraSecreta = data.palabras[Math.floor(Math.random() * data.palabras.length)];
+            console.log("Palabra secreta:", palabraSecreta); // Para depuración
+            generarCuadricula(palabraSecreta.length);
+        } catch (error) {
+            console.error("Error cargando palabras:", error);
+        }
+    }
 
-  //   for (let i = 0; i < maxIntentos; i++) {
-  //     for (let j = 0; j < palabraSecreta.length; j++) {
-  //       const cell = document.createElement('div');
-  //       cell.classList.add('cell');
-  //       cell.setAttribute('contenteditable', 'true');
-  //       cell.setAttribute('data-row', i);
-  //       cell.setAttribute('data-col', j);
-  //       wordleContainer.appendChild(cell);
-  //     }
-  //   }
+    // Generar la cuadrícula
+    function generarCuadricula(longitud) {
+        wordleContainer.innerHTML = ""; 
+        for (let i = 0; i < maxIntentos; i++) {
+            for (let j = 0; j < longitud; j++) {
+                let cell = document.createElement('div');
+                cell.classList.add('cell');
+                cell.setAttribute('data-row', i);
+                cell.setAttribute('data-col', j);
+                cell.setAttribute('contenteditable', i === 0); // Solo la primera fila editable
+                wordleContainer.appendChild(cell);
+            }
+        }
+    }
 
-  //   document.addEventListener('keydown', function(event) {
-  //     if (event.key === 'Enter') {
-  //       validarIntento(palabraSecreta, intentos);
-  //       intentos++;
-  //       if (intentos >= maxIntentos) {
-  //         alert('Has agotado tus intentos. La palabra era: ' + palabraSecreta);
-  //         reiniciarJuego();
-  //       }
-  //     }
-  //   });
-  // }
+    // Capturar input del usuario
+    document.addEventListener('keydown', function(event) {
+        let activeCells = document.querySelectorAll(`.cell[data-row="${intentos}"]`);
+        let letrasValidas = /^[a-zA-Záéíóúñ]$/;
 
-  // function validarIntento(palabraSecreta, intento) {
-  //   const wordleContainer = document.getElementById('wordle-container');
-  //   const cells = wordleContainer.querySelectorAll(`[data-row="${intento}"]`);
-  //   let intentoPalabra = '';
+        if (event.key === "Enter" && intentoActual.length === palabraSecreta.length) {
+            validarIntento();
+        } else if (letrasValidas.test(event.key) && intentoActual.length < palabraSecreta.length) {
+            activeCells[intentoActual.length].textContent = event.key.toLowerCase();
+            intentoActual += event.key.toLowerCase();
+        } else if (event.key === "Backspace" && intentoActual.length > 0) {
+            intentoActual = intentoActual.slice(0, -1);
+            activeCells[intentoActual.length].textContent = "";
+        }
+    });
 
-  //   cells.forEach(cell => {
-  //     intentoPalabra += cell.textContent.toLowerCase();
-  //   });
+    // Validar el intento
+    function validarIntento() {
+        let activeCells = document.querySelectorAll(`.cell[data-row="${intentos}"]`);
+        let palabraArray = palabraSecreta.split("");
 
-  //   if (intentoPalabra.length !== palabraSecreta.length) {
-  //     alert('Completa todas las letras antes de validar.');
-  //     return;
-  //   }
+        for (let i = 0; i < palabraSecreta.length; i++) {
+            let letra = intentoActual[i];
+            if (letra === palabraSecreta[i]) {
+                activeCells[i].classList.add('correct');
+            } else if (palabraArray.includes(letra)) {
+                activeCells[i].classList.add('present');
+            } else {
+                activeCells[i].classList.add('absent');
+            }
+        }
 
-  //   cells.forEach((cell, index) => {
-  //     const letra = cell.textContent.toLowerCase();
-  //     if (letra === palabraSecreta[index]) {
-  //       cell.classList.add('correct');
-  //     } else if (palabraSecreta.includes(letra)) {
-  //       cell.classList.add('present');
-  //     } else {
-  //       cell.classList.add('absent');
-  //     }
-  //   });
+        // Revisar si ganó o perdió
+        if (intentoActual === palabraSecreta) {
+            setTimeout(() => alert("¡Felicidades! Adivinaste la palabra 🎉"), 100);
+        } else {
+            intentos++;
+            intentoActual = "";
+            if (intentos >= maxIntentos) {
+                setTimeout(() => alert(`¡Perdiste! La palabra era "${palabraSecreta}"`), 100);
+            } else {
+                let nextRow = document.querySelectorAll(`.cell[data-row="${intentos}"]`);
+                nextRow.forEach(cell => cell.setAttribute('contenteditable', 'true'));
+            }
+        }
+    }
 
-  //   if (intentoPalabra === palabraSecreta) {
-  //     alert('¡Felicidades! Has adivinado la palabra.');
-  //     reiniciarJuego();
-  //   }
-  // }
+    // Reiniciar el juego
+    refreshButton.addEventListener('click', () => location.reload());
 
-   window.reiniciarJuego = function() {
-    location.reload();
-}});
-let refresh = document.getElementsByClassName('refresh');
-refresh.addEventListener('click', _ => {
-            location.reload();
+    // Cargar palabras y preparar juego
+    cargarPalabras();
 });
