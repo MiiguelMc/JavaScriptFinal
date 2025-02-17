@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+/* Fuente */
 .bebas-neue-regular {
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
@@ -14,34 +15,40 @@ body, html {
     justify-content: center;
     align-items: center;
     font-family: 'Bebas Neue', sans-serif;
-    background-color: var(--color-fondo);
+    background-color: var(--color-fondo); /* Variables */
     color: var(--color-fuente);
 }
 
+/* Variables "normal" en negro basicamente  */
 :root {
   --color-fuente: #ffffff;
   --color-fondo: #000;
 }
-
+/* Tema claro */
 [data-theme="light"] {
   --color-fuente: #000;
   --color-fondo: #fff;
 }
-
+/* Literalmente el titulo */
 .titulo {
   font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
 }
-
-#wordle-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+/* Aqui es el contenedor donde se hace el World  */
+#contenedor-wordle {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
 }
-
-.cell {
+/* La Filas */
+.fila-wordle {
+  display: flex;
+  gap: 10px;
+}
+/* Los cuadraditos*/
+.celda {
   width: 50px;
   height: 50px;
   border: 2px solid #000;
@@ -52,23 +59,23 @@ body, html {
   text-transform: uppercase;
   font-family: 'Bebas Neue', sans-serif;
 }
-
-.correct {
+/* Bien puesto pues se pone en verde */
+.correcto {
   background-color: green;
   color: white;
 }
-
-.present {
+/* Este pero no en esa posicion */
+.presente {
   background-color: yellow;
   color: black;
 }
-
-.absent {
+/* No esta esa letra */
+.ausente {
   background-color: grey;
   color: white;
 }
-
-.refresh {
+/* Boton de reiniciar para que tambien cambie con el tema  */
+.reiniciar {
   color: var(--color-fondo);
   background-color: var(--color-fuente);
   padding: 10px 20px;
@@ -77,8 +84,8 @@ body, html {
   font-size: 1.2rem;
   font-family: 'Bebas Neue', sans-serif;
 }
-
-.refresh:hover {
+/* para que cambie si pongo el raton encima */
+.reiniciar:hover {
   background-color: var(--color-fondo);
   color: var(--color-fuente);
 }

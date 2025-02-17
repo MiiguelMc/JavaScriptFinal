@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
+    <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
@@ -12,24 +13,25 @@
     <title>Wordle en Español</title>
   </head>
   <body>
-    <header class="container">
-      <div class="row">
-        <div class="col text-center">
-          <label id="switch">
-            <input type="checkbox" id="theme-switch">
-            <span class="slider round"></span>
+    <!-- Basicamente el cambio de tema -->
+    <header class="contenedor">
+      <div class="fila">
+        <div class="columna text-center">
+          <label id="interruptor">
+            <input type="checkbox" id="interruptor-tema">
+            <span class="slider redondo"></span>
           </label>
         </div>
       </div>
     </header>
-
+    <!-- Aqui empieza el Juego -->
     <h1 class="titulo">¡Bienvenido a Wordle en Español!</h1>
     
-    <div id="wordle-container"></div>
+    <div id="contenedor-wordle"></div>
 
-    <p id="mensaje-final" class="hidden"></p>
-
-    <button class="refresh">Reiniciar</button>
+    <p id="mensaje-final" class="oculto"></p>
+<!-- Boton para reiniciar el juego -->
+    <button class="reiniciar">Reiniciar</button>
 
   </body>
 </html>
