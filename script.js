@@ -129,12 +129,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
         /* Aqui es para que si adivina la palabra salga un cartelito de los del los primeros dias  */
         if (intentoActual === palabraSecreta) {
-            setTimeout(() => alert("¡Felicidades! Adivinaste la palabra "), 100); /* Aqui si adivina la palabra y el numero el tiempo en que tarda en salir */
+            setTimeout(() => alert("Felicidades Adivinaste la palabra "), 100); /* Aqui si adivina la palabra y el numero el tiempo en que tarda en salir */
         } else {
             intentos++;
             intentoActual = "";
             if (intentos >= maxIntentos) {
-                setTimeout(() => alert(`¡Perdiste! La palabra era "${palabraSecreta}"`), 100);
+                setTimeout(() => alert(`Perdiste La palabra era "${palabraSecreta}"`), 100);
             } else {
                 /* Aqui es para que si no adivina la palabra se ponga la siguiente fila */
                 let siguienteFila = document.querySelectorAll(`.celda[data-fila="${intentos}"]`);
